@@ -18,61 +18,48 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/pkgng/copit"
 )
 
-type Human struct {
-	Name string
-	Role string
-	Age  int32
+type DocModel struct {
+	ID       int
+	Tag      []string
+	Text     string
+	ModifyAt string
 }
 
-type Farmer struct {
-	Name      string
-	Age       int32
-	EmployeId int64
-	SuperRole string
+type UserModel struct {
+	Name    string
+	Avatar  string
+	Role    string
+	Birtday string
 }
 
-func (f *Farmer) Role(role string) {
-	f.SuperRole = "Super " + role
+type Doc struct {
+	Owner  string `copit:"Name"`
+	Avatar string
+	Zodiac string
+	DocID  int `copit:"ID"`
+	Tag    []string
+	Text   string
+}
+
+func (d *Doc) Birtday(birth string) {
+	d.Zodiac = "天平座"
 }
 
 func main() {
 	var (
-		man      = Human{Name: "Zhangsan", Age: 18, Role: "Admin"}
-		mans     = []Human{{Name: "Zhangsan", Age: 18, Role: "Admin"}, {Name: "zhangsan 2", Age: 30, Role: "Dev"}}
-		farmer  = Farmer{}
-		farmers = []Farmer{}
+		user     = UserModel{Name: "Zhangsan", Avatar: "http://a.b.c/a.png", Role: "Admin", Birtday: "2001-10-11"}
+		docModel = DocModel{ID: 2501, Text: "this is all doc text", ModifyAt: "2020-1-12", Tag: []string{"a", "b", "c"}}
+		doc      = Doc{}
 	)
 
-	copit.Copy(&farmer, &man)
+	copit.Copy(&doc, &user)
+	copit.Copy(&doc, &docModel)
 
-	fmt.Printf("%#v \n", farmer)
-	// Farmer{
-	//    Name: "Zhangsan",           // Copy from field
-	//    Age: 18,                  // Copy from field
-	//    FarmerId: 0,            // Ignored
-	//    SuperRole: "Super Admin", // Copy to method
-	// }
-
-	// Copy struct to slice
-	copit.Copy(&farmers, &man)
-
-	fmt.Printf("%#v \n", farmers)
-	// []Farmer{
-	//   {Name: "Zhangsan", Age: 18, EmployeId: 0, SuperRole: "Super Admin"}
-	// }
-
-	// Copy slice to slice
-	farmers = []Farmer{}
-	copit.Copy(&farmers, &mans)
-
-	fmt.Printf("%#v \n", farmers)
-	// []Farmer{
-	//   {Name: "Zhangsan", Age: 18, EmployeId: 0, SuperRole: "Super Admin"},
-	//   {Name: "zhangsan 2", Age: 30, EmployeId: 0, SuperRole: "Super Dev"},
-	// }
+	fmt.Printf("%#v \n", doc)
 }
 ```
 
