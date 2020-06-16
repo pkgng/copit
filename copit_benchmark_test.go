@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"copit"
+	"github.com/pkgng/copit"
 )
 
 func BenchmarkCopyStruct(b *testing.B) {

@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"copit"
+	"github.com/pkgng/copit"
 )
 
 type Human struct {

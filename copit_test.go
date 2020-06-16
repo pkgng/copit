@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"copit"
+	"github.com/pkgng/copit"
 )
 
 type User struct {

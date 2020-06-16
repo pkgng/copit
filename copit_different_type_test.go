@@ -3,7 +3,7 @@ package copit
 import (
 	"testing"
 
-	"copit"
+	"github.com/pkgng/copit"
 )
 
 type TypeStruct1 struct {
