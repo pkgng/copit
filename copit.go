@@ -60,7 +60,7 @@ func Copy(toValue interface{}, fromValue interface{}) (err error) {
 		return
 	}
 
-	if from.IsValid() {
+	if true {
 		toTypeFields := deepFields(toType)
 		for _, field := range toTypeFields {
 			name := field.Name
@@ -80,6 +80,28 @@ func Copy(toValue interface{}, fromValue interface{}) (err error) {
 				}
 			}
 		}
+	}
+
+	if true {
+		fromTypeFields := deepFields(fromType)
+		for _, field := range fromTypeFields {
+			name := field.Name
+
+			if fromField := from.FieldByName(name); fromField.IsValid() {
+
+				var toMethod reflect.Value
+				if to.CanAddr() {
+					toMethod = to.Addr().MethodByName(name)
+				} else {
+					toMethod = to.MethodByName(name)
+				}
+
+				if toMethod.IsValid() && toMethod.Type().NumIn() == 1 && fromField.Type().AssignableTo(toMethod.Type().In(0)) {
+					toMethod.Call([]reflect.Value{fromField})
+				}
+			}
+		}
+
 	}
 
 	return

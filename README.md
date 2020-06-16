@@ -6,6 +6,7 @@
 ## Features
 
 * Copy from field to field with same name
+* Copy from field to method with same name
 * Copy from field where tag assigned
 * Copy from slice to slice
 * Copy from struct to slice

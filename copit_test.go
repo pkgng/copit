@@ -21,10 +21,6 @@ type User struct {
 	flags    []byte
 }
 
-func (user User) DoubleAge() int32 {
-	return 2 * user.Age
-}
-
 type Employee struct {
 	Name      string
 	Birthday  *time.Time
@@ -64,6 +60,9 @@ func checkEmployee(employee Employee, user User, t *testing.T, testCase string) 
 	}
 	if user.FakeAge != nil && employee.FakeAge != int(*user.FakeAge) {
 		t.Errorf("%v: FakeAge haven't been copied correctly.", testCase)
+	}
+	if employee.SuperRule != "Super "+user.Role {
+		t.Errorf("%v: Copy to method doesn't work", testCase)
 	}
 	if !reflect.DeepEqual(employee.Notes, user.Notes) {
 		t.Errorf("%v: Copy from slice doen't work", testCase)
