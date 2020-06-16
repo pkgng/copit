@@ -1,4 +1,4 @@
-package copit_test
+package copit
 
 import (
 	"testing"
