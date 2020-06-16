@@ -30,9 +30,12 @@ type Human struct {
 type Farmer struct {
 	Name      string
 	Age       int32
-	DoubleAge int32
 	EmployeId int64
-	SuperRule string
+	SuperRole string
+}
+
+func (f *Farmer) Role(role string) {
+	f.SuperRole = "Super " + role
 }
 
 func main() {
@@ -49,9 +52,8 @@ func main() {
 	// Farmer{
 	//    Name: "Zhangsan",           // Copy from field
 	//    Age: 18,                  // Copy from field
-	//    DoubleAge: 36,            // Copy from method
 	//    FarmerId: 0,            // Ignored
-	//    SuperRule: "Super Admin", // Copy to method
+	//    SuperRole: "Super Admin", // Copy to method
 	// }
 
 	// Copy struct to slice
@@ -59,7 +61,7 @@ func main() {
 
 	fmt.Printf("%#v \n", farmers)
 	// []Farmer{
-	//   {Name: "Zhangsan", Age: 18, DoubleAge: 36, EmployeId: 0, SuperRule: "Super Admin"}
+	//   {Name: "Zhangsan", Age: 18, EmployeId: 0, SuperRole: "Super Admin"}
 	// }
 
 	// Copy slice to slice
@@ -68,8 +70,8 @@ func main() {
 
 	fmt.Printf("%#v \n", farmers)
 	// []Farmer{
-	//   {Name: "Zhangsan", Age: 18, DoubleAge: 36, EmployeId: 0, SuperRule: "Super Admin"},
-	//   {Name: "zhangsan 2", Age: 30, DoubleAge: 60, EmployeId: 0, SuperRule: "Super Dev"},
+	//   {Name: "Zhangsan", Age: 18, EmployeId: 0, SuperRole: "Super Admin"},
+	//   {Name: "zhangsan 2", Age: 30, EmployeId: 0, SuperRole: "Super Dev"},
 	// }
 }
 ```
