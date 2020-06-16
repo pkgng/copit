@@ -69,7 +69,7 @@ func Copy(toValue interface{}, fromValue interface{}) (err error) {
 			}
 
 			if fromField := from.FieldByName(name); fromField.IsValid() {
-				if toField := to.FieldByName(name); toField.IsValid() {
+				if toField := to.FieldByName(field.Name); toField.IsValid() {
 					if toField.CanSet() {
 						if !set(toField, fromField) {
 							if err := Copy(toField.Addr().Interface(), fromField.Interface()); err != nil {
